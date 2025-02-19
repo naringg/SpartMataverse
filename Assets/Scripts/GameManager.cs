@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
     private int currentScore = 0;
     private int highScore = 0;
 
-    UIManager uiManager;
-    public UIManager UIManager { get { return uiManager; } }
+    FPUIManager FPuiManager;
+    public FPUIManager FPUIManager { get { return FPuiManager; } }
 
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        uiManager = FindObjectOfType<UIManager>();
+        FPuiManager = FindObjectOfType<FPUIManager>();
 
         // 저장된 최고 기록 불러오기
         highScore = PlayerPrefs.GetInt("HighScore", 0);
@@ -34,8 +34,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        uiManager.UpdateScore(0);
-        uiManager.UpdateHighScore(highScore); // 최고 기록 UI 업데이트
+        FPuiManager.UpdateScore(0);
+        FPuiManager.UpdateHighScore(highScore); // 최고 기록 UI 업데이트
     }
 
     public void GameOver()
@@ -50,8 +50,8 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.Save();
         }
 
-        uiManager.UpdateHighScore(highScore); // UI 반영
-        uiManager.SetRestart();
+        FPuiManager.UpdateHighScore(highScore); // UI 반영
+        FPuiManager.SetRestart();
     }
 
     public void RestartGame()
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     {
         currentScore += score;
         Debug.Log("Score: " + currentScore);
-        uiManager.UpdateScore(currentScore);
+        FPuiManager.UpdateScore(currentScore);
         if (currentScore % 5 == 0)
         {
             // Player의 forwardSpeed를 업데이트
