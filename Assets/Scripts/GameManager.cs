@@ -64,5 +64,14 @@ public class GameManager : MonoBehaviour
         currentScore += score;
         Debug.Log("Score: " + currentScore);
         uiManager.UpdateScore(currentScore);
+        if (currentScore % 5 == 0)
+        {
+            // Player의 forwardSpeed를 업데이트
+            Player player = FindObjectOfType<Player>();
+            if (player != null)
+            {
+                player.IncreaseSpeed(0.5f);
+            }
+        }
     }
 }
