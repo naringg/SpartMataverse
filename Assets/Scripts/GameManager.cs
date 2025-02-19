@@ -9,22 +9,48 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return gameManager; } }
 
     private int currentScore = 0;
+    private int highScore = 0;
+
     UIManager uiManager;
     public UIManager UIManager { get { return uiManager; } }
+
     private void Awake()
     {
-        gameManager = this;
-        uiManager =FindObjectOfType<UIManager>();
+        if (gameManager == null)
+        {
+            gameManager = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        uiManager = FindObjectOfType<UIManager>();
+
+        // 저장된 최고 기록 불러오기
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
     }
 
     private void Start()
     {
         uiManager.UpdateScore(0);
+        uiManager.UpdateHighScore(highScore); // 최고 기록 UI 업데이트
     }
 
     public void GameOver()
     {
         Debug.Log("Game Over");
+
+        // 최고 기록 갱신 확인
+        if (currentScore > highScore)
+        {
+            highScore = currentScore;
+            PlayerPrefs.SetInt("HighScore", highScore); // 최고 기록 저장
+            PlayerPrefs.Save();
+        }
+
+        uiManager.UpdateHighScore(highScore); // UI 반영
         uiManager.SetRestart();
     }
 
@@ -36,7 +62,7 @@ public class GameManager : MonoBehaviour
     public void AddScore(int score)
     {
         currentScore += score;
-        Debug.Log("Score" + currentScore);
+        Debug.Log("Score: " + currentScore);
         uiManager.UpdateScore(currentScore);
     }
 }

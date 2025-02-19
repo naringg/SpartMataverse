@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ChangeScene : MonoBehaviour
 {
-    public string sceneName = "FlappyPlane"; // 전환할 씬 이름
+    public string sceneName = ""; // 전환할 씬 이름
 
     private void Start()
     {

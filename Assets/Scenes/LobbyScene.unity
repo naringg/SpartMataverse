@@ -6732,9 +6732,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 834565726}
-  - component: {fileID: 834565728}
   - component: {fileID: 834565727}
   - component: {fileID: 834565729}
+  - component: {fileID: 834565730}
   m_Layer: 0
   m_Name: NPC
   m_TagString: NPC
@@ -6804,8 +6804,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.87, y: 5.4}
   m_EdgeRadius: 0
---- !u!61 &834565728
-BoxCollider2D:
+--- !u!114 &834565729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834565725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a7ff53215467f4fb2e29281c9f1d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MiniGameButton: {fileID: 931078346}
+  audioSource: {fileID: 1886529189}
+--- !u!60 &834565730
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6836,7 +6850,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.006755829, y: -0.022901654}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6846,23 +6860,14 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.5896063, y: 2.0229423}
-  m_EdgeRadius: 0
---- !u!114 &834565729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 834565725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45a7ff53215467f4fb2e29281c9f1d93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MiniGameButton: {fileID: 931078346}
-  audioSource: {fileID: 1886529189}
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 1}
+      - {x: -0.95105654, y: 0.30901697}
+      - {x: -0.5877852, y: -0.80901706}
+      - {x: 0.58778536, y: -0.80901694}
+      - {x: 0.9510565, y: 0.30901712}
+  m_UseDelaunayMesh: 0
 --- !u!1 &850308936
 GameObject:
   m_ObjectHideFlags: 0
@@ -7049,19 +7054,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 931078349}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 931078346}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &931078349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13684,7 +13677,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5e97863cc63e29f42af4877564b666bd, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.495
+  m_Volume: 0.212
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -13905,7 +13898,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1990094287
 MonoBehaviour:
   m_ObjectHideFlags: 0
