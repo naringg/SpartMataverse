@@ -5435,7 +5435,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: '         FlappyPlane
 
-    Click of Space to avoid crashing the plane!
+    Click or Space to avoid crashing the plane!
     The plane is going faster and faster.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
