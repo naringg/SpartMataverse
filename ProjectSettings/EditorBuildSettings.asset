@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FlappyPlane.unity
     guid: b517e13ebad1a9d42b6e6b4aa7972fb5
+  - enabled: 1
+    path: Assets/Scenes/CatchBugScene.unity
+    guid: 240845bd1b30c5145881c1be8c835a05
   m_configObjects: {}
