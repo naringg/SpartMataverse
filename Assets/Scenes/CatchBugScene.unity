@@ -1231,7 +1231,7 @@ MonoBehaviour:
   gameOverPanel: {fileID: 987936053}
   gameOverText: {fileID: 1794396799}
   finalScoreText: {fileID: 1314060823}
-  highScoreText: {fileID: 1098947154}
+  BChighScoreText: {fileID: 1098947154}
   totalScore: 0
   totalTime: 30
 --- !u!82 &1401462932
