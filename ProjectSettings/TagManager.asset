@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BackGround
   - NPC
+  - Bug
   layers:
   - Default
   - TransparentFX
