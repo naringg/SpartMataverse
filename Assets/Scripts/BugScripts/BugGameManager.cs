@@ -6,14 +6,21 @@ public class BugGameManager : MonoBehaviour
     public TextMeshProUGUI bugScoreText;
     public TextMeshProUGUI bugTimeText;
     public GameObject bugPrefab;
-    public Transform spawnArea;  // spawnArea를 
+    public Transform spawnArea;
+    public GameObject gameOverPanel; // 게임 종료 후 표시될 패널
+    public TextMeshProUGUI gameOverText; // 게임 종료 후 표시될 텍스트 (성공/실패)
+    public TextMeshProUGUI finalScoreText; // 최종 점수 텍스트
+    public TextMeshProUGUI highScoreText; // 최고 점수 텍스트
 
-    private int totalScore = 0;
-    private float totalTime = 30.0f;
+    [SerializeField] int totalScore = 0;
+    [SerializeField] float totalTime = 30.0f;
     private GameObject currentBug;
+    private int highScore;
 
     void Start()
     {
+        highScore = PlayerPrefs.GetInt("HighScore", 0); // 최고 점수 불러오기
+        gameOverPanel.SetActive(false); // 게임 시작 시 패널 비활성화
         SpawnBug(); // 처음 벌레 생성
     }
 
@@ -26,15 +33,20 @@ public class BugGameManager : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 0.0f;
-            totalTime = 0.0f;
+            if (totalTime <=0)
+            {
+                totalTime = 0; // 시간을 0으로 설정
+                GameOver(); // 게임 오버 처리
+                Debug.Log("GameOver");
+            }
         }
     }
 
     void SpawnBug()
     {
-        if (currentBug != null) Destroy(currentBug); //벌레가 있다면 벌레를 지움
+        if (currentBug != null) Destroy(currentBug);
 
+        // 카메라 뷰 안에서 랜덤 위치 생성
         Vector3 randomPos = GetRandomSpawnPosition();
         currentBug = Instantiate(bugPrefab, randomPos, Quaternion.identity);
     }
@@ -54,14 +66,44 @@ public class BugGameManager : MonoBehaviour
 
     public void OnBugClicked()
     {
+        // 만약 시간이 0 이하라면 점수를 올리지 않고 종료
         if (totalTime <= 0.0f)
         {
             return;
         }
-        int plusScore = 1;
-        totalScore += plusScore;
+
+        totalScore += 1; // 점수 증가
         bugScoreText.text = "Score: " + totalScore;
         SpawnBug(); // 새로운 벌레 생성
-        
+    }
+
+    void GameOver()
+    {
+        // 게임 종료 UI 활성화
+        gameOverPanel.SetActive(true);
+        Debug.Log("Game Over Panel 활성화됨");
+
+        // 게임 종료 메시지 출력
+        if (totalScore >= 40)
+        {
+            gameOverText.text = "Sucess!";
+            Debug.Log("Sucess");
+        }
+        else
+        {
+            gameOverText.text = "Fail...";
+            Debug.Log("Fail");
+        }
+
+        finalScoreText.text = "Score: " + totalScore; // 최종 점수 출력
+
+        // 최고 점수 갱신
+        if (totalScore > highScore)
+        {
+            highScore = totalScore;
+            PlayerPrefs.SetInt("HighScore", highScore); // 새로운 최고 점수 저장
+        }
+
+        highScoreText.text = "High Score: " + highScore; // 최고 점수 출력
     }
 }
