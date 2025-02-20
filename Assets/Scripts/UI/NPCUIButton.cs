@@ -10,7 +10,7 @@ public class NPCUIButton : MonoBehaviour
     {
         if (MiniGameButton != null)
         {
-            MiniGameButton.SetActive(false); 
+            MiniGameButton.SetActive(false);
         }
         if (audioSource != null)
         {
@@ -20,19 +20,19 @@ public class NPCUIButton : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) 
+        if (other.CompareTag("Player"))
         {
             MiniGameButton.SetActive(true);
             if (audioSource != null && !audioSource.isPlaying)
             {
-                audioSource.Play(); 
+                audioSource.Play();
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) 
+        if (other.CompareTag("Player"))
         {
             MiniGameButton.SetActive(false);
         }

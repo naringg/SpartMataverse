@@ -10,16 +10,16 @@ public class BugGameManager : MonoBehaviour
     public GameObject gameOverPanel; // 게임 종료 후 표시될 패널
     public TextMeshProUGUI gameOverText; // 게임 종료 후 표시될 텍스트 (성공/실패)
     public TextMeshProUGUI finalScoreText; // 최종 점수 텍스트
-    public TextMeshProUGUI highScoreText; // 최고 점수 텍스트
+    public TextMeshProUGUI BChighScoreText; // 최고 점수 텍스트
 
     [SerializeField] int totalScore = 0;
     [SerializeField] float totalTime = 30.0f;
     private GameObject currentBug;
-    private int highScore;
+    private int BChighScore;
 
     void Start()
     {
-        highScore = PlayerPrefs.GetInt("HighScore", 0); // 최고 점수 불러오기
+        BChighScore = PlayerPrefs.GetInt("BCHighScore", 0); // 최고 점수 불러오기
         gameOverPanel.SetActive(false); // 게임 시작 시 패널 비활성화
         SpawnBug(); // 처음 벌레 생성
     }
@@ -104,12 +104,12 @@ public class BugGameManager : MonoBehaviour
         finalScoreText.text = "Score: " + totalScore; // 최종 점수 출력
 
         // 최고 점수 갱신
-        if (totalScore > highScore)
+        if (totalScore > BChighScore)
         {
-            highScore = totalScore;
-            PlayerPrefs.SetInt("HighScore", highScore); // 새로운 최고 점수 저장
+            BChighScore = totalScore;
+            PlayerPrefs.SetInt("BCHighScore", BChighScore); // 새로운 최고 점수 저장
         }
 
-        highScoreText.text = "High Score: " + highScore; // 최고 점수 출력
+       BChighScoreText.text = "High Score: " + BChighScore; // 최고 점수 출력
     }
 }
