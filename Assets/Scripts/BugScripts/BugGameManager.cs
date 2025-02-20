@@ -49,6 +49,12 @@ public class BugGameManager : MonoBehaviour
         // 카메라 뷰 안에서 랜덤 위치 생성
         Vector3 randomPos = GetRandomSpawnPosition();
         currentBug = Instantiate(bugPrefab, randomPos, Quaternion.identity);
+
+        float randomScale = Random.Range(0.2f, 1.0f); // 0.5배에서 1배 사이의 크기
+        currentBug.transform.localScale = new Vector3(randomScale, randomScale, 1);
+
+        float randomRotation = Random.Range(0f, 360f); // 0에서 360도 사이의 회전 각도
+        currentBug.transform.rotation = Quaternion.Euler(0, 0, randomRotation);
     }
 
     Vector3 GetRandomSpawnPosition()
